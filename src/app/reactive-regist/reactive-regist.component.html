@@ -1,0 +1,17 @@
+<form [formGroup]="registForm" (ngSubmit)="submit()">
+  <div>用户名：<input formControlName="username" type="text"></div>
+  <div [hidden]="!registForm.hasError('required','username')">用户名是必填项。</div>
+  <div [hidden]="!registForm.hasError('minlength','username')">用户名最小长度是6。</div>
+  <div>手机号：<input formControlName="mobile" type="number"></div>
+  <div [hidden]="!registForm.hasError('mobile','mobile')">请输入正确的手机号。</div>
+  <div formGroupName="passwordsGroup">
+    <div>密码： <input formControlName="password" type="password"></div>
+    <div>确认密码：<input formControlName="confirmPassword" type="password"></div>
+  </div>
+  <div [hidden]="!registForm.hasError('minlength',['passwordsGroup','password'])">密码长度不能小于6。</div>
+  <div [hidden]="!registForm.hasError('equal','passwordsGroup')">
+    {{registForm.getError('equal','passwordsGroup')?.descxxx}}
+  </div>
+  <button type="submit">提交</button>
+</form>
+{{registForm.status}}
